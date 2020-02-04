@@ -10,7 +10,7 @@
 </head>
 <body class="container-fluid">
     <div class="row justify-content-center mt-5">
-        <div class="col col-md-6 col-xl-3   ">
+        <div class="col col-md-6 col-xl-4">
             <header>
                 <h1>Agenda de contactos</h1>
                 <h2 class="text-secondary">LocalStorage</h2>
@@ -27,18 +27,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">0034-</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Movil">
+                    <input type="text" class="form-control" id="tlf" placeholder="Movil">
                 </div>
             </section>
             <hr/>
             <section>
                 <div class="row justify-content-between mb-3">
-                    <input type="submit" id="guardar" value="Guardar" class="btn btn-primary col-3">
+                    <input type="submit" id="save" value="Guardar" class="btn btn-primary col-3">
                     <input type="button" value="Recuperar" class="btn btn-success col-3">
                     <input type="button" value="Eliminar" class="btn btn-danger col-3">
                 </div>
-                <div class="row">
-                    <input type="button" value="Eliminar todos" class="btn btn-danger col">
+                <div class="row mb-3">
+                    <input type="button" id="deleteAll" value="Eliminar todos" class="btn btn-danger col">
+                </div>
+                <div class="row" id="users">
+
                 </div>
             </section>
         </div>
