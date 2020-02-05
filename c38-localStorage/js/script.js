@@ -1,6 +1,5 @@
-var inc = localStorage.length;
-
 document.getElementById("save").addEventListener('click', save);
+document.getElementById("delete").addEventListener('click', deleteOne)
 document.getElementById("deleteAll").addEventListener('click', deleteAll);
 
 function save() {
@@ -13,36 +12,43 @@ function save() {
             tlf: tlf
         };
 
-        //Comprueba que no exista ya ese usuario debido al incremento
-        for (let key in localStorage){
-            if('user'+inc === key) {
-                inc++;
-            }
-        }
-        
-        localStorage.setItem('user'+inc, JSON.stringify(user));
-        oneUser(name, tlf);
-        inc++;         
+        localStorage.setItem(name, JSON.stringify(user));
+        oneUser(name, tlf);    
+
         document.getElementById('nameForm').value = '';     
-        document.getElementById("tlf").value = '';                         
+        document.getElementById("tlf").value = '';      
+        printUsers();                   
     } else {
         alert("Completa los campos.");
     }
 }
 
+function deleteOne() {
+    let name = document.getElementById('nameForm').value;
+    if(name !== '') {
+        localStorage.removeItem(name);
+        printUsers();
+    }
+}
+
 function deleteAll() {
     localStorage.clear();
-    document.getElementById('users').innerHTML = '';
+    printUsers();
 }
 
 
 function printUsers() {
-    for ( var i = 0; i < localStorage.length; i++ ) {
-        let data = localStorage.getItem(localStorage.key(i));
-        if(JSON.parse(data != null)){
-            let name = JSON.parse(data).name;
-            let tlf = JSON.parse(data).tlf;
-            oneUser(name, tlf);
+    if(localStorage.length === 0){
+        document.getElementById('users').innerHTML = 'No hay usuarios.';
+    } else {
+        document.getElementById('users').innerHTML = '';
+        for ( var i = 0; i < localStorage.length; i++ ) {
+            let data = localStorage.getItem(localStorage.key(i));
+            if(JSON.parse(data != null)){
+                let name = JSON.parse(data).name;
+                let tlf = JSON.parse(data).tlf;
+                oneUser(name, tlf);
+            }
         }
     }
 }        
